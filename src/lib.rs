@@ -30,6 +30,13 @@ use async_trait::async_trait;
 /// value types.
 pub mod convert;
 
+/// Provides types and traits for various operations on `Moment`s.
+/// 
+/// This module is almost always required when using HyperCPU.
+/// It provides the standard arithmetic and logical operators
+/// for `Moment`s.
+pub mod ops;
+
 /// Provides the HyperCPU prelude.
 pub mod prelude;
 
