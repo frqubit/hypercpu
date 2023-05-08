@@ -37,6 +37,14 @@ pub mod convert;
 /// for `Moment`s.
 pub mod ops;
 
+/// Provides conditional logic for `Moment`s.
+/// 
+/// This module is not in the prelude, but is still
+/// a common requirement for HyperCPU. It provides
+/// the [`If`] struct, which allows you to branch
+/// calculations based on a condition.
+pub mod cond;
+
 /// Provides the HyperCPU prelude.
 pub mod prelude;
 
@@ -51,7 +59,7 @@ pub trait Moment: Send + Sync + Sized {
   /// The type of value that this `Moment` resolves to.
   /// 
   /// It must be thread friendly and sized.
-  type Value: Send + Sync + Sized;
+  type Value: Moment;
 
   /// Resolve this `Moment` into its value.
   /// 
