@@ -1,3 +1,5 @@
+use std::error::Error;
+
 use async_trait::async_trait;
 
 pub mod convert;
@@ -33,3 +35,34 @@ literal_moments![
   bool,
   char
 ];
+
+#[async_trait]
+impl<T, E> Moment for Result<T, E>
+where
+  T: Moment,
+  E: Error + Send + Sync + 'static
+{
+  type Value = Result<T::Value, E>;
+
+  async fn resolve(self) -> Self::Value {
+    match self {
+      Ok(value) => Ok(value.resolve().await),
+      Err(error) => Err(error)
+    }
+  }
+}
+
+#[async_trait]
+impl<T> Moment for Option<T>
+where
+  T: Moment
+{
+  type Value = Option<T::Value>;
+
+  async fn resolve(self) -> Self::Value {
+    match self {
+      Some(value) => Some(value.resolve().await),
+      None => None
+    }
+  }
+}
