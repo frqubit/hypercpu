@@ -25,3 +25,16 @@ async fn is_false() {
 
   assert_eq!(r.expect_right("Was not false"), 2);
 }
+
+#[tokio::test]
+async fn nested() {
+  let a = 10;
+  let b = 20;
+
+  let c: i32 = If::new(a > b, a, b)
+    .resolve()
+    .await
+    .either_into();
+  
+  assert_eq!(c, 30 + 20);
+}

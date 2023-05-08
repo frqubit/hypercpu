@@ -9,6 +9,18 @@ use std::{marker::PhantomData, error::Error};
 /// [`Moment`]s. See its documentation for more information.
 pub struct Convert<I: Moment, O: Moment>(pub I, PhantomData<O>);
 
+impl<I, O> Convert<I, O>
+where
+  I: Moment,
+  O: Moment,
+  I::Value: Into<O>
+{
+  /// Create a [`Convert`] struct from an input [`Moment`].
+  pub fn new(input: I) -> Self {
+    Self(input, PhantomData)
+  }
+}
+
 #[async_trait]
 impl<I, O> Moment for Convert<I, O>
 where
@@ -57,6 +69,19 @@ pub struct TryConvert<
   I: Moment,
   O: Moment
 >(pub I, PhantomData<O>);
+
+impl<I, O> TryConvert<I, O>
+where
+  I: Moment,
+  O: Moment,
+  I::Value: TryInto<O>,
+  <I::Value as TryInto<O>>::Error: Error + Send + Sync + 'static 
+{
+  /// Create a [`TryConvert`] struct from an input [`Moment`].
+  pub fn new(input: I) -> Self {
+    Self(input, PhantomData)
+  }
+}
 
 #[async_trait]
 impl<I, O> Moment for TryConvert<I, O>
