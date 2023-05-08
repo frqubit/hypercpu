@@ -1,5 +1,7 @@
 # HyperCPU
 
+**WARNING**: This library is nowhere near a stable version. Do not use this crate yet.
+
 HyperCPU is a distributable symbolic computation library written in Rust. Thanks to Rust's type system, HyperCPU can perform calculations on values that are not yet known. This allows for distributed computation for tasks that would otherwise be impossible to parallelize, like conditional branching.
 
 ## Example
