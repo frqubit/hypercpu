@@ -2,30 +2,24 @@ use hypercpu::prelude::*;
 
 
 #[tokio::test]
-async fn numbers() {
+async fn basic() {
   let a = 1u8;
-
-  let b: u16 = Convert::new(a).resolve().await;
-  let c: u32 = Convert::new(b).resolve().await;
-  let d: u64 = Convert::new(c).resolve().await;
+  let b: u16 = a.to_convert().resolve().await;
 
   assert_eq!(a, b as u8);
-  assert_eq!(a, c as u8);
-  assert_eq!(a, d as u8);
+}
 
-  let a = 1i8;
+#[tokio::test]
+async fn fallible() {
+  let a: u64 = 1;
+  let b: u32 = a.to_try_convert().resolve().await.unwrap();
 
-  let b: i16 = Convert::new(a).resolve().await;
-  let c: i32 = Convert::new(b).resolve().await;
-  let d: i64 = Convert::new(c).resolve().await;
+  assert_eq!(a, b as u64);
+}
 
-  assert_eq!(a, b as i8);
-  assert_eq!(a, c as i8);
-  assert_eq!(a, d as i8);
-
-  let a = 1f32;
-
-  let b: f64 = Convert::new(a).resolve().await;
-
-  assert_eq!(a, b as f32);
+#[tokio::test]
+#[should_panic]
+async fn fallible_panic() {
+  let a: i64 = -1;
+  let _: u32 = a.to_try_convert().resolve().await.unwrap();
 }

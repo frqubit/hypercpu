@@ -5,8 +5,8 @@ pub mod convert;
 pub mod prelude;
 
 #[async_trait]
-pub trait Moment: Send + Sync {
-  type Value: Send + Sync;
+pub trait Moment: Send + Sync + Sized {
+  type Value: Send + Sync + Sized;
 
   async fn resolve(self) -> Self::Value;
 }
