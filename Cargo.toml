@@ -8,7 +8,7 @@ repository = "https://github.com/carlosskii/hypercpu"
 readme = "README.md"
 keywords = ["distributed", "symbolic", "computation", "hypercpu"]
 categories = ["distributed-systems", "symbolic-computation"]
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

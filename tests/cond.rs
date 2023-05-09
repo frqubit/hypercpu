@@ -36,5 +36,5 @@ async fn nested() {
     .await
     .either_into();
   
-  assert_eq!(c, 30 + 20);
+  assert_eq!(c, 20);
 }

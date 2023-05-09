@@ -45,6 +45,13 @@ pub mod ops;
 /// calculations based on a condition.
 pub mod cond;
 
+/// Provides easy construction of `Moment`s.
+/// 
+/// This module provides the [`Value`] struct,
+/// which uses operator overloading to allow
+/// you to easily construct `Moment`s.
+pub mod value;
+
 /// Provides the HyperCPU prelude.
 pub mod prelude;
 
