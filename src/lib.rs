@@ -52,6 +52,8 @@ pub mod cond;
 /// you to easily construct `Moment`s.
 pub mod value;
 
+mod hyper;
+
 /// Provides the HyperCPU prelude.
 pub mod prelude;
 

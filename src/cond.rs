@@ -1,6 +1,5 @@
 use crate::Moment;
 use async_trait::async_trait;
-use either::Either;
 
 /// A conditional calculation.
 /// 
@@ -8,9 +7,9 @@ use either::Either;
 /// on a condition. Both sides are still optimized, but
 /// only one side will be fully resolved.
 pub struct If<C: Moment<Value = bool>, T: Moment, F: Moment> {
-  condition: C,
-  then: T,
-  otherwise: F,
+  pub(crate) condition: C,
+  pub(crate) then: T,
+  pub(crate) otherwise: F,
 }
 
 impl<C: Moment<Value = bool>, T: Moment, F: Moment> If<C, T, F> {
@@ -36,29 +35,13 @@ where
   T: Moment,
   F: Moment
 {
-  type Value = Either<T, F>;
+  type Value = If<C, T::Value, F::Value>;
 
   async fn resolve(self) -> Self::Value {
-    if self.condition.resolve().await {
-      Either::Left(self.then)
-    } else {
-      Either::Right(self.otherwise)
-    }
-  }
-}
-
-#[async_trait]
-impl<L, R> Moment for Either<L, R>
-where
-  L: Moment,
-  R: Moment
-{
-  type Value = Either<L::Value, R::Value>;
-
-  async fn resolve(self) -> Self::Value {
-    match self {
-      Either::Left(l) => Either::Left(l.resolve().await),
-      Either::Right(r) => Either::Right(r.resolve().await),
-    }
+    If::new(
+      self.condition,
+      self.then.resolve().await,
+      self.otherwise.resolve().await,
+    )
   }
 }

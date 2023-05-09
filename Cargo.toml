@@ -16,7 +16,6 @@ edition = "2021"
 
 [dependencies]
 async-trait = "0.1.68"
-either = "1.8.1"
 
 [dev-dependencies]
 tokio = { version = "1.28.0", features = ["test-util", "macros"] }

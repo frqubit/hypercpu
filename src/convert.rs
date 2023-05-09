@@ -60,7 +60,6 @@ where
   I::Value: Into<O>
 {}
 
-
 /// Try to convert between `Moment`s of different value types.
 /// 
 /// This struct is created by the `to_try_convert` method on
@@ -89,7 +88,7 @@ where
   I: Moment,
   O: Moment,
   I::Value: TryInto<O>,
-  <I::Value as TryInto<O>>::Error: Error + Send + Sync + 'static 
+  <I::Value as TryInto<O>>::Error: Error + Send + Sync + Clone + 'static 
 {
   type Value = Result<O, <I::Value as TryInto<O>>::Error>;
 
