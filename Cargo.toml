@@ -5,9 +5,10 @@ authors = ["Carlos Kieliszewski"]
 license = "MIT OR Apache-2.0"
 homepage = "https://github.com/carlosskii/hypercpu"
 repository = "https://github.com/carlosskii/hypercpu"
+documentation = "https://docs.rs/hypercpu"
 readme = "README.md"
 keywords = ["distributed", "symbolic", "computation", "hypercpu"]
-categories = ["distributed-systems", "symbolic-computation"]
+categories = ["mathematics", "algorithms"]
 version = "0.0.2"
 edition = "2021"
 
