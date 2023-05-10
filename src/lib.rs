@@ -76,7 +76,7 @@ pub trait Moment: Send + Sync + Sized + Clone {
   /// and then resolve this `Moment` into its value. If
   /// this `Moment` has no dependencies, it will resolve
   /// immediately.
-  async fn resolve(self) -> Self::Value;
+  async fn resolve(&self) -> Self::Value;
 }
 
 macro_rules! literal_moments {
@@ -86,8 +86,8 @@ macro_rules! literal_moments {
       impl Moment for $ty {
         type Value = $ty;
 
-        async fn resolve(self) -> Self::Value {
-          self
+        async fn resolve(&self) -> Self::Value {
+          *self
         }
       }
     )*
@@ -110,10 +110,10 @@ where
 {
   type Value = Result<T::Value, E>;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     match self {
       Ok(value) => Ok(value.resolve().await),
-      Err(error) => Err(error)
+      Err(error) => Err(error.clone())
     }
   }
 }
@@ -125,7 +125,7 @@ where
 {
   type Value = Option<T::Value>;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     match self {
       Some(value) => Some(value.resolve().await),
       None => None

@@ -32,8 +32,8 @@ where
 {
   type Value = Self;
 
-  async fn resolve(self) -> Self::Value {
-    self
+  async fn resolve(&self) -> Self::Value {
+    self.clone()
   }
 }
 

@@ -9,7 +9,7 @@ documentation = "https://docs.rs/hypercpu"
 readme = "README.md"
 keywords = ["distributed", "symbolic", "computation", "hypercpu"]
 categories = ["mathematics", "algorithms"]
-version = "0.0.2"
+version = "0.1.0"
 edition = "2021"
 
 [dependencies]

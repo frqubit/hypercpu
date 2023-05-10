@@ -28,7 +28,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await + self.1.resolve().await
   }
 }
@@ -59,7 +59,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await - self.1.resolve().await
   }
 }
@@ -90,7 +90,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await * self.1.resolve().await
   }
 }
@@ -121,7 +121,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await / self.1.resolve().await
   }
 }
@@ -152,7 +152,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await % self.1.resolve().await
   }
 }

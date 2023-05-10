@@ -31,7 +31,7 @@ where
 {
   type Value = O;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await.into()
   }
 }
@@ -94,7 +94,7 @@ where
 {
   type Value = Result<O, <I::Value as TryInto<O>>::Error>;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     self.0.resolve().await.try_into()
   }
 }

@@ -56,9 +56,9 @@ where
 {
   type Value = If<C, T::Value, F::Value>;
 
-  async fn resolve(self) -> Self::Value {
+  async fn resolve(&self) -> Self::Value {
     If::new(
-      self.condition,
+      self.condition.clone(),
       self.then.resolve().await,
       self.otherwise.resolve().await,
     )
