@@ -6,6 +6,7 @@ use async_trait::async_trait;
 /// This struct allows you to branch calculations based
 /// on a condition. Both sides are still optimized, but
 /// only one side will be fully resolved.
+#[derive(Clone)]
 pub struct If<C: Moment<Value = bool>, T: Moment, F: Moment> {
   pub(crate) condition: C,
   pub(crate) then: T,
@@ -24,6 +25,24 @@ impl<C: Moment<Value = bool>, T: Moment, F: Moment> If<C, T, F> {
       condition,
       then,
       otherwise,
+    }
+  }
+
+  /// Tries to get the `then` calculation.
+  pub async fn to_then(self) -> Option<T> {
+    if self.condition.resolve().await {
+      Some(self.then)
+    } else {
+      None
+    }
+  }
+
+  /// Tries to get the `otherwise` calculation.
+  pub async fn to_otherwise(self) -> Option<F> {
+    if !self.condition.resolve().await {
+      Some(self.otherwise)
+    } else {
+      None
     }
   }
 }

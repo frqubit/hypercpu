@@ -7,6 +7,7 @@ use std::{marker::PhantomData, error::Error};
 /// 
 /// This struct is created by the `to_convert` method on
 /// [`Moment`]s. See its documentation for more information.
+#[derive(Clone)]
 pub struct Convert<I: Moment, O: Moment>(pub I, PhantomData<O>);
 
 impl<I, O> Convert<I, O>
@@ -64,6 +65,7 @@ where
 /// 
 /// This struct is created by the `to_try_convert` method on
 /// [`Moment`]s. See the `AsConvert` trait for more information.
+#[derive(Clone)]
 pub struct TryConvert<
   I: Moment,
   O: Moment

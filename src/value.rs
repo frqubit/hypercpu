@@ -10,6 +10,7 @@ use std::ops;
 /// `Moment`s that perform the operation on the
 /// value instead of the standard compiler
 /// behaviors.
+#[derive(Clone)]
 pub struct Value<T>(T);
 
 impl<T> Value<T> {

@@ -194,8 +194,96 @@ where
   fn add(self, rhs: R) -> Self::Output {
     If::new(
       self.condition,
-      Add::new(self.then, rhs),
+      Add::new(self.then, rhs.clone()),
       Add::new(self.otherwise, rhs)
+    )
+  }
+}
+
+impl<C, T, F, R, TO, FO> ops::Sub<R> for If<C, T, F>
+where
+  C: Moment<Value = bool>,
+  T: Moment,
+  F: Moment,
+  R: Moment,
+  TO: Moment,
+  FO: Moment,
+  T::Value: ops::Sub<R::Value, Output = TO>,
+  F::Value: ops::Sub<R::Value, Output = FO>
+{
+  type Output = If<C, Sub<T, R, TO>, Sub<F, R, FO>>;
+
+  fn sub(self, rhs: R) -> Self::Output {
+    If::new(
+      self.condition,
+      Sub::new(self.then, rhs.clone()),
+      Sub::new(self.otherwise, rhs)
+    )
+  }
+}
+
+impl<C, T, F, R, TO, FO> ops::Mul<R> for If<C, T, F>
+where
+  C: Moment<Value = bool>,
+  T: Moment,
+  F: Moment,
+  R: Moment,
+  TO: Moment,
+  FO: Moment,
+  T::Value: ops::Mul<R::Value, Output = TO>,
+  F::Value: ops::Mul<R::Value, Output = FO>
+{
+  type Output = If<C, Mul<T, R, TO>, Mul<F, R, FO>>;
+
+  fn mul(self, rhs: R) -> Self::Output {
+    If::new(
+      self.condition,
+      Mul::new(self.then, rhs.clone()),
+      Mul::new(self.otherwise, rhs)
+    )
+  }
+}
+
+impl<C, T, F, R, TO, FO> ops::Div<R> for If<C, T, F>
+where
+  C: Moment<Value = bool>,
+  T: Moment,
+  F: Moment,
+  R: Moment,
+  TO: Moment,
+  FO: Moment,
+  T::Value: ops::Div<R::Value, Output = TO>,
+  F::Value: ops::Div<R::Value, Output = FO>
+{
+  type Output = If<C, Div<T, R, TO>, Div<F, R, FO>>;
+
+  fn div(self, rhs: R) -> Self::Output {
+    If::new(
+      self.condition,
+      Div::new(self.then, rhs.clone()),
+      Div::new(self.otherwise, rhs)
+    )
+  }
+}
+
+impl<C, T, F, R, TO, FO> ops::Rem<R> for If<C, T, F>
+where
+  C: Moment<Value = bool>,
+  T: Moment,
+  F: Moment,
+  R: Moment,
+  TO: Moment,
+  FO: Moment,
+  T::Value: ops::Rem<R::Value, Output = TO>,
+  F::Value: ops::Rem<R::Value, Output = FO>
+{
+  type Output = If<C, Rem<T, R, TO>, Rem<F, R, FO>>;
+
+  fn rem(self, rhs: R) -> Self::Output {
+    If::new(
+      self.condition,
+      Rem::new(self.then, rhs.clone()),
+      Rem::new(self.otherwise, rhs)
     )
   }
 }

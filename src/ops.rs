@@ -3,6 +3,7 @@ use async_trait::async_trait;
 use std::marker::PhantomData;
 
 /// Add two [`Moment`]s together.
+#[derive(Clone)]
 pub struct Add<A: Moment, B: Moment, O: Moment>(pub A, pub B, PhantomData<O>);
 impl<A, B, O> Add<A, B, O>
 where
@@ -33,6 +34,7 @@ where
 }
 
 /// Subtract one [`Moment`] from another.
+#[derive(Clone)]
 pub struct Sub<A: Moment, B: Moment, O: Moment>(pub A, pub B, PhantomData<O>);
 impl<A, B, O> Sub<A, B, O>
 where
@@ -63,6 +65,7 @@ where
 }
 
 /// Multiply two [`Moment`]s together.
+#[derive(Clone)]
 pub struct Mul<A: Moment, B: Moment, O: Moment>(pub A, pub B, PhantomData<O>);
 impl<A, B, O> Mul<A, B, O>
 where
@@ -93,6 +96,7 @@ where
 }
 
 /// Divide one [`Moment`] by another.
+#[derive(Clone)]
 pub struct Div<A: Moment, B: Moment, O: Moment>(pub A, pub B, PhantomData<O>);
 impl<A, B, O> Div<A, B, O>
 where
@@ -123,6 +127,7 @@ where
 }
 
 /// Get the remainder of dividing one [`Moment`] by another.
+#[derive(Clone)]
 pub struct Rem<A: Moment, B: Moment, O: Moment>(pub A, pub B, PhantomData<O>);
 impl<A, B, O> Rem<A, B, O>
 where
