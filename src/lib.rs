@@ -52,6 +52,8 @@ pub mod cond;
 /// you to easily construct `Moment`s.
 pub mod value;
 
+mod hyper;
+
 /// Provides the HyperCPU prelude.
 pub mod prelude;
 
@@ -62,7 +64,7 @@ pub mod prelude;
 /// can be resolved in parallel, even when the `Moment`s
 /// depend on the output of each other.
 #[async_trait]
-pub trait Moment: Send + Sync + Sized {
+pub trait Moment: Send + Sync + Sized + Clone {
   /// The type of value that this `Moment` resolves to.
   /// 
   /// It must be thread friendly and sized.
@@ -104,7 +106,7 @@ literal_moments![
 impl<T, E> Moment for Result<T, E>
 where
   T: Moment,
-  E: Error + Send + Sync + 'static
+  E: Error + Send + Sync + Clone + 'static
 {
   type Value = Result<T::Value, E>;
 
