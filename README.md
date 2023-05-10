@@ -6,6 +6,8 @@ HyperCPU is a distributable symbolic computation library written in Rust. Thanks
 
 ## Example
 
+### Basic
+
 ```rust
 use hypercpu::prelude::*;
 
@@ -16,6 +18,18 @@ let c = Add::new(Mul::new(b, 5), a);
 let c = c.resolve().await;
 
 assert_eq!(c, 11);
+```
+
+### With operators
+
+```rust
+use hypercpu::prelude::*;
+
+let a = Value::new(1);
+let b = a * 2;
+let c = b + 3;
+
+assert_eq!(c.resolve().await, 5);
 ```
 
 ## Stability
