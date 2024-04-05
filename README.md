@@ -1,15 +1,15 @@
-# HyperCPU
+# DistCPU
 
 **WARNING**: This library is nowhere near a stable version. Do not use this crate yet.
 
-HyperCPU is a distributable symbolic computation library written in Rust. Thanks to Rust's type system, HyperCPU can perform calculations on values that are not yet known. This allows for distributed computation for tasks that would otherwise be impossible to parallelize, like conditional branching.
+DistCPU is a distributable symbolic computation library written in Rust. Thanks to Rust's type system, DistCPU can perform calculations on values that are not yet known. This allows for distributed computation for tasks that would otherwise be impossible to parallelize, like conditional branching.
 
 ## Example
 
 ### Basic
 
 ```rust
-use hypercpu::prelude::*;
+use distcpu::prelude::*;
 
 let a = 1;
 let b = 2;
@@ -34,8 +34,8 @@ assert_eq!(c.resolve().await, 5);
 
 ## Stability
 
-HyperCPU is still in very early development. It will be a component of the [Circe Project](https://github.com/carlosskii/circe), which is also in early development.
+DistCPU is still in very early development. I make no guarantees that this will ever be finished, but I'm happy to work on this with students from [Lernib](https://github.com/lernib)
 
 ## License
 
-HyperCPU is licensed under the [MIT License](./LICENSE-MIT) OR [Apache License 2.0](./LICENSE-APACHE).
+DistCPU is licensed under the [MIT License](./LICENSE-MIT) OR [Apache License 2.0](./LICENSE-APACHE).

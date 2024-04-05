@@ -1,15 +1,15 @@
 [package]
-name = "hypercpu"
+name = "distcpu"
 description = "Distributed symbolic computation"
 authors = ["Carlos Kieliszewski"]
 license = "MIT OR Apache-2.0"
-homepage = "https://github.com/carlosskii/hypercpu"
-repository = "https://github.com/carlosskii/hypercpu"
-documentation = "https://docs.rs/hypercpu"
+homepage = "https://github.com/frqubit/distcpu"
+repository = "https://github.com/frqubit/distcpu"
+documentation = "https://docs.rs/distcpu"
 readme = "README.md"
 keywords = ["distributed", "symbolic", "computation", "hypercpu"]
 categories = ["mathematics", "algorithms"]
-version = "0.0.2"
+version = "0.1.0"
 edition = "2021"
 
 [dependencies]

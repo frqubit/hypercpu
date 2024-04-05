@@ -1,5 +1,5 @@
-use hypercpu::prelude::*;
-use hypercpu::cond::If;
+use distcpu::prelude::*;
+use distcpu::cond::If;
 
 
 #[tokio::test]

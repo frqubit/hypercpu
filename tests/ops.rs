@@ -1,4 +1,4 @@
-use hypercpu::prelude::*;
+use distcpu::prelude::*;
 
 
 #[tokio::test]
